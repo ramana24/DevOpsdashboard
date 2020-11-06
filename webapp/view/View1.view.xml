@@ -1,0 +1,308 @@
+<mvc:View controllerName="ux.SecondProject.controller.View1"   class="sapUiSizeCompact" xmlns:html="http://www.w3.org/1999/xhtml"
+	xmlns:mvc="sap.ui.core.mvc" displayBlock="true" xmlns:l="sap.ui.layout"
+	xmlns:viz="sap.viz.ui5.controls" xmlns:viz.feeds="sap.viz.ui5.controls.common.feeds"
+	xmlns:viz.data="sap.viz.ui5.data" xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form"
+	xmlns="sap.m" xmlns:common="sap.ui.commons">
+	<Shell id="shell">
+		<App>
+		<pages>
+			<Page title="{i18n>title}">
+				<content>
+					<VBox id="TileContainer">
+												<HBox>
+													<f:SimpleForm minWidth="1024px"
+														maxContainerCols="4" layout="ResponsiveLayout">
+														<VBox>
+
+
+															<HBox class="sapUiTinyMarginBottom">
+
+
+																<!--CRM TILE -->
+																<f:SimpleForm id="crmtile" class="equalColumns1"
+																	maxContainerCols="1" title="CRM" editable="false"
+																	layout="ResponsiveLayout">
+																	<VBox id="crmcontainer">
+
+																		<HBox>
+																			<Text class="sapUiMediumMarginTop sapUiSmallMarginBegin"
+																				text="Queue Depth"></Text>
+																			<NumericContent id="crmqd"
+																				class="sapUiTinyMarginBegin sapUiTinyMarginTop"
+																				value="{oCRMModel>/d/results/0/StockQuantity}"
+																				valueColor="Critical"							indicator="None" withMargin="false" state="Loaded"
+																				press="onOpenQueueDialog" />
+																		</HBox>
+
+																		<List id= "crmlist" class="sapUiTinyMarginBottom" >
+
+																			<StandardListItem id="crmsys" title="System Errors" 	type="Active" 
+					
+						                                                        press="onOpenSystemDialog"
+																				info="{oCRMModel>/d/results/0/DimensionHeight}"
+																				infoState="Error"  />
+
+																			<StandardListItem id="crmapp" title="App Errors" type="Active"
+					
+						                                                        press="onOpenAppDialog"
+																				info="{oCRMModel>/d/results/0/DimensionWidth}"
+																				infoState="Error" />
+
+																			<StandardListItem title="No of Threads"
+																				info="{oCRMModel>/d/results/0/DimensionDepth}"
+																				infoState="None" />
+																		
+																		</List>
+
+																		<HBox>
+																			<Label class="sapUiSmallMarginBegin" text="Updated at:"></Label>
+																			 <Text
+																				text="{oCRMModel>/d/results/0/LastModified}"></Text> 
+																		<!-- <Text text="{
+                                                                                         path: '/oCRMModel>/d/results/0/LastModified',
+                                                                                         type: 'sap.ui.model.type.Date',
+                                                                                         formatOptions: {
+                                                                                            source: {pattern: 'yyyy-MM-dd'},
+                                                                                            style: 'long'
+                                                                                                          }
+                                                                                    }"> </Text> -->
+                                                                        </HBox>
+																	</VBox>
+																</f:SimpleForm>
+
+																<!-- ECC -->
+																<f:SimpleForm id="ecctile" class="equalColumns2"
+																	maxContainerCols="1" title="ECC" editable="false"
+																	layout="ResponsiveLayout">
+																	<VBox id="ecccontainer">
+																		<HBox>
+																			<Text class="sapUiMediumMarginTop sapUiSmallMarginBegin"
+																				text="Queue Depth"></Text>
+																			<NumericContent id="QdepthECC"
+																				class="sapUiMediumMarginBegin sapUiTinyMarginTop"
+																				value="{oECCModel>/d/results/1/StockQuantity}"
+																				valueColor="Critical"
+																				indicator="None" withMargin="false" state="Loaded"
+																				press="onOpenECCQueueDialog"/>
+																		</HBox>
+
+																		<List class="sapUiTinyMarginBottom" 
+																			headerText="">
+																			<StandardListItem id="eccsys" title="System Errors" type="Active" 
+					
+						press="onOpenECCSystemDialog"
+																				info="{oECCModel>/d/results/1/DimensionHeight}"
+																				infoState="Warning" />
+																			<StandardListItem id="eccapp" title="App Errors"  type="Active"
+					
+						press="onOpenECCAppDialog"
+																				info="{oECCModel>/d/results/1/DimensionDepth}"
+																				infoState="Warning" />
+																			<StandardListItem title="No of Threads"
+																				info="{oECCModel>/d/results/1/DimensionWidth}"
+																				infoState="None" />
+
+																		</List>
+
+																		<HBox>
+																			<Label class="sapUiSmallMarginBegin" text="Updated at:  "></Label>
+																			<Text
+																				text="{oECCModel>/d/results/1/LastModified}"></Text>
+																		</HBox>
+
+																	</VBox>
+
+																</f:SimpleForm>
+
+																<!-- BW -->
+																<f:SimpleForm id="bwtile" class="equalColumns3"
+																	maxContainerCols="1" title="BIW" editable="false"
+																	layout="ResponsiveLayout">
+
+																	<VBox id="bwcontainer">
+
+																		<HBox>
+																			<Text class="sapUiMediumMarginTop sapUiSmallMarginBegin"
+																				text="Queue Depth"></Text>
+																			<NumericContent
+																				class="sapUiSmallMarginBegin sapUiTinyMarginTop"
+																				value="{oBWModel>/d/results/5/StockQuantity}"
+																				valueColor="Critical"
+																				indicator="None" withMargin="false" state="Loaded"
+																				press="onOpenBIWQueueDialog" />
+																		</HBox>
+
+																		<List class="sapUiTinyMarginBottom" 
+																			headerText="">
+
+																			<StandardListItem id="biwsys" title="System Errors" press="onOpenBIWSystemDialog" type="Active" 
+																				info="{oBWModel>/d/results/5/DimensionHeight}"
+																				infoState="Error" />
+																			<StandardListItem id="biwapp" title="App Errors" press="onOpenBIWAppDialog" type="Active" 
+																				info="{oBWModel>/d/results/5/DimensionWidth}"
+																				infoState="Warning" />
+																			<StandardListItem title="No of Threads"
+																				info="{oBWModel>/d/results/5/DimensionDepth}"
+																				infoState="Warning" />
+																		</List>
+
+																		<HBox>
+																			<Label class="sapUiTinyMarginBegin" text="Updated at:"></Label>
+																			<Text
+																				text="{oBWModel>/d/results/5/LastModified}"></Text>
+																		</HBox>
+																	</VBox>
+																</f:SimpleForm>
+
+															
+
+																
+
+
+
+
+															</HBox>
+                                                            <HBox>
+
+                                                            <!-- plm -->
+	<f:SimpleForm id="plmtile" class="equalColumns3"
+																	maxContainerCols="1" title="PLM" editable="false"
+																	layout="ResponsiveLayout">
+
+																	<VBox id="plmcontainer">
+
+																		<HBox>
+																			<Text class="sapUiMediumMarginTop sapUiSmallMarginBegin"
+																				text="Queue Depth"></Text>
+																			<NumericContent
+																				class="sapUiSmallMarginBegin sapUiTinyMarginTop"
+																				value="{oPLMModel>/d/results/2/StockQuantity}"
+																				valueColor="Critical"
+																				indicator="None" withMargin="false" state="Loaded"
+																				press="onOpenBIWQueueDialog" />
+																		</HBox>
+
+																		<List class="sapUiTinyMarginBottom" 
+																			headerText="">
+
+																			<StandardListItem id="plmsys" title="System Errors" press="onOpenBIWSystemDialog" type="Active" 
+																				info="{oPLMModel>/d/results/2/DimensionHeight}"
+																				infoState="Error" />
+																			<StandardListItem id="plmapp" title="App Errors" press="onOpenBIWAppDialog" type="Active" 
+																				info="{oPLMModel>/d/results/2/DimensionWidth}"
+																				infoState="Warning" />
+																			<StandardListItem title="No of Threads"
+																				info="{oPLMModel>/d/results/2/DimensionDepth}"
+																				infoState="Warning" />
+																		</List>
+
+																		<HBox>
+																			<Label class="sapUiTinyMarginBegin" text="Updated at:"></Label>
+																			<Text
+																				text="{oPLMModel>/d/results/2/LastModified}"></Text>
+																		</HBox>
+																	</VBox>
+																</f:SimpleForm>
+															
+
+<!-- java -->
+<f:SimpleForm id="javatile" class="equalColumns3"
+																	maxContainerCols="1" title="Java" editable="false"
+																	layout="ResponsiveLayout">
+
+																	<VBox id="javacontainer">
+
+																		<HBox>
+																			<Text class="sapUiMediumMarginTop sapUiSmallMarginBegin"
+																				text="Queue Depth"></Text>
+																			<NumericContent
+																				class="sapUiSmallMarginBegin sapUiTinyMarginTop"
+																				value="{oJavaModel>/d/results/3/StockQuantity}"
+																				valueColor="Critical"
+																				indicator="None" withMargin="false" state="Loaded"
+																				press="onOpenBIWQueueDialog" />
+																		</HBox>
+
+																		<List class="sapUiTinyMarginBottom" 
+																			headerText="">
+
+																			<StandardListItem id="javasys" title="System Errors" press="onOpenBIWSystemDialog" type="Active" 
+																				info="{oJavaModel>/d/results/3/DimensionHeight}"
+																				infoState="Error" />
+																			<StandardListItem id="javaapp" title="App Errors" press="onOpenBIWAppDialog" type="Active" 
+																				info="{oJavaModel>/d/results/3/DimensionWidth}"
+																				infoState="Warning" />
+																			<StandardListItem title="No of Threads"
+																				info="{oJavaModel>/d/results/3/DimensionDepth}"
+																				infoState="Warning" />
+																		</List>
+
+																		<HBox>
+																			<Label class="sapUiTinyMarginBegin" text="Updated at:"></Label>
+																			<Text
+																				text="{oJavaModel>/d/results/3/LastModified}"></Text>
+																		</HBox>
+																	</VBox>
+																</f:SimpleForm>
+<!-- AWS -->
+<f:SimpleForm id="AWStile" class="equalColumns1"
+																	maxContainerCols="1" title="AWS" editable="false"
+																	layout="ResponsiveLayout">
+																	<VBox id="awscontainer">
+
+																		<HBox>
+																			<Text class="sapUiMediumMarginTop sapUiSmallMarginBegin"
+																				text="Queue Depth"></Text>
+																			<NumericContent id="awsqd"
+																				class="sapUiMediumMarginBegin sapUiTinyMarginTop"
+																				value="{oAWSModel>/d/results/4/StockQuantity}"
+																				valueColor="Critical"							indicator="None" withMargin="false" state="Loaded"
+																				press="onOpenQueueDialog" />
+																		</HBox>
+
+																		<List id= "awslist" class="sapUiTinyMarginBottom" >
+
+																			<StandardListItem id="awssys" title="System Errors" 	type="Active" 
+					
+						                                                        press="onOpenSystemDialog"
+																				info="{oAWSModel>/d/results/4/DimensionHeight}"
+																				infoState="Error"  />
+
+																			<StandardListItem id="awsapp" title="App Errors" type="Active"
+					
+						                                                        press="onOpenAppDialog"
+																				info="{oAWSModel>/d/results/4/DimensionWidth}"
+																				infoState="Error" />
+
+																			<StandardListItem title="No of Threads"
+																				info="{oAWSModel>/d/results/4/DimensionDepth}"
+																				infoState="None" />
+																		
+																		</List>
+
+																		<HBox>
+																			<Label class="sapUiSmallMarginBegin" text="Updated at:"></Label>
+																			<Text
+																				text="{oAWSModel>/d/results/4/LastModified}"></Text>
+																		</HBox>
+																	</VBox>
+																</f:SimpleForm>
+															
+                                                            </HBox>
+
+
+
+
+
+														</VBox>
+													</f:SimpleForm>
+
+												</HBox>
+											</VBox>		
+
+				</content>
+			</Page>
+		</pages>
+	</App>
+	</Shell>
+</mvc:View>
