@@ -1,13 +1,16 @@
 sap.ui.define([
-		"sap/ui/core/mvc/Controller"
+        "sap/ui/core/mvc/Controller",
+            'ux/SecondProject/util/Formatter'
+          
 	],
 	/**
      * @param {typeof sap.ui.core.mvc.Controller} Controller
      */
-	function (Controller) {
+	function (Controller,Formatter) {
 		"use strict";
 
 		return Controller.extend("ux.SecondProject.controller.View1", {
+            Formatter:Formatter, // loading outside formatter into our file
 			onInit: function () {
 
             var sServiceUrl = "/sap/opu/odata/sap/EPM_REF_APPS_PROD_MAN_SRV/";

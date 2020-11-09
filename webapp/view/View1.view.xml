@@ -1,13 +1,21 @@
-<mvc:View controllerName="ux.SecondProject.controller.View1"   class="sapUiSizeCompact" xmlns:html="http://www.w3.org/1999/xhtml"
-	xmlns:mvc="sap.ui.core.mvc" displayBlock="true" xmlns:l="sap.ui.layout"
+<mvc:View controllerName="ux.SecondProject.controller.View1" width="100%" height="100%"  class="sapUiSizeCompact" xmlns:html="http://www.w3.org/1999/xhtml"
+	xmlns:mvc="sap.ui.core.mvc" displayBlock="true" xmlns:l="sap.ui.layout" 	xmlns:t="sap.ui.table"
 	xmlns:viz="sap.viz.ui5.controls" xmlns:viz.feeds="sap.viz.ui5.controls.common.feeds"
 	xmlns:viz.data="sap.viz.ui5.data" xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form"
 	xmlns="sap.m" xmlns:common="sap.ui.commons">
 	<Shell id="shell">
 		<App>
 		<pages>
-			<Page title="{i18n>title}">
+			<Page title="{i18n>title}" backgroundDesign="Transparent" enableScrolling="true"  	class= "sapUiResponsivePadding--header">
 				<content>
+
+                <IconTabBar id="idIconTabBarMulti" upperCase="false" backgroundDesign="Solid"
+									applyContentPadding="false" expanded="{device>/isNoPhone}">
+									<items>
+										<!-- IconTab Systems  -->
+										<IconTabFilter class="IconTabText" icon="sap-icon://it-system"
+					iconColor="Critical"
+											text="Systems">
 					<VBox id="TileContainer">
 												<HBox>
 													<f:SimpleForm minWidth="1024px"
@@ -28,7 +36,7 @@
 																			<Text class="sapUiMediumMarginTop sapUiSmallMarginBegin"
 																				text="Queue Depth"></Text>
 																			<NumericContent id="crmqd"
-																				class="sapUiTinyMarginBegin sapUiTinyMarginTop"
+																				class="sapUiSmallMarginBegin sapUiTinyMarginTop"
 																				value="{oCRMModel>/d/results/0/StockQuantity}"
 																				valueColor="Critical"							indicator="None" withMargin="false" state="Loaded"
 																				press="onOpenQueueDialog" />
@@ -55,17 +63,11 @@
 																		</List>
 
 																		<HBox>
-																			<Label class="sapUiSmallMarginBegin" text="Updated at:"></Label>
-																			 <Text
-																				text="{oCRMModel>/d/results/0/LastModified}"></Text> 
-																		<!-- <Text text="{
-                                                                                         path: '/oCRMModel>/d/results/0/LastModified',
-                                                                                         type: 'sap.ui.model.type.Date',
-                                                                                         formatOptions: {
-                                                                                            source: {pattern: 'yyyy-MM-dd'},
-                                                                                            style: 'long'
-                                                                                                          }
-                                                                                    }"> </Text> -->
+																			<Label class="sapUiTinyMarginBegin" text="Updated at:"></Label>
+																			<Text
+																				text="{
+								                                                    path: 'oCRMModel>/d/results/0/LastModified',
+							                                                    formatter: '.Formatter.formatJSONDate'}"></Text>
                                                                         </HBox>
 																	</VBox>
 																</f:SimpleForm>
@@ -79,7 +81,7 @@
 																			<Text class="sapUiMediumMarginTop sapUiSmallMarginBegin"
 																				text="Queue Depth"></Text>
 																			<NumericContent id="QdepthECC"
-																				class="sapUiMediumMarginBegin sapUiTinyMarginTop"
+																				class="Hbold sapUiMediumMarginBegin sapUiTinyMarginTop"
 																				value="{oECCModel>/d/results/1/StockQuantity}"
 																				valueColor="Critical"
 																				indicator="None" withMargin="false" state="Loaded"
@@ -106,8 +108,10 @@
 
 																		<HBox>
 																			<Label class="sapUiSmallMarginBegin" text="Updated at:  "></Label>
-																			<Text
-																				text="{oECCModel>/d/results/1/LastModified}"></Text>
+																		<Text
+																				text="{
+								                                                    path: 'oECCModel>/d/results/1/LastModified',
+							                                                    formatter: '.Formatter.formatJSONDate'}"></Text>
 																		</HBox>
 
 																	</VBox>
@@ -149,7 +153,9 @@
 																		<HBox>
 																			<Label class="sapUiTinyMarginBegin" text="Updated at:"></Label>
 																			<Text
-																				text="{oBWModel>/d/results/5/LastModified}"></Text>
+																				text="{
+								                                                    path: 'oBWModel>/d/results/5/LastModified',
+							                                                    formatter: '.Formatter.formatJSONDate'}"></Text>
 																		</HBox>
 																	</VBox>
 																</f:SimpleForm>
@@ -199,14 +205,16 @@
 																		<HBox>
 																			<Label class="sapUiTinyMarginBegin" text="Updated at:"></Label>
 																			<Text
-																				text="{oPLMModel>/d/results/2/LastModified}"></Text>
+																				text="{
+								                                                    path: 'oPLMModel>/d/results/2/LastModified',
+							                                                    formatter: '.Formatter.formatJSONDate'}"></Text>
 																		</HBox>
 																	</VBox>
 																</f:SimpleForm>
 															
 
 <!-- java -->
-<f:SimpleForm id="javatile" class="equalColumns3"
+<f:SimpleForm id="javatile" class="equalColumns2"
 																	maxContainerCols="1" title="Java" editable="false"
 																	layout="ResponsiveLayout">
 
@@ -239,8 +247,12 @@
 
 																		<HBox>
 																			<Label class="sapUiTinyMarginBegin" text="Updated at:"></Label>
-																			<Text
-																				text="{oJavaModel>/d/results/3/LastModified}"></Text>
+																			<!-- <Text
+																				text="{oJavaModel>/d/results/3/LastModified}"></Text> -->
+                                                                                <Text
+																				text="{
+								                                                    path: 'oJavaModel>/d/results/3/LastModified',
+							                                                    formatter: '.Formatter.formatJSONDate'}"></Text>
 																		</HBox>
 																	</VBox>
 																</f:SimpleForm>
@@ -282,8 +294,12 @@
 
 																		<HBox>
 																			<Label class="sapUiSmallMarginBegin" text="Updated at:"></Label>
-																			<Text
-																				text="{oAWSModel>/d/results/4/LastModified}"></Text>
+																			<!-- <Text
+																				text="{oAWSModel>/d/results/4/LastModified}"></Text> -->
+                                                                                <Text
+																				text="{
+								                                                    path: 'oAWSModel>/d/results/4/LastModified',
+							                                                    formatter: '.Formatter.formatJSONDate'}"></Text>
 																		</HBox>
 																	</VBox>
 																</f:SimpleForm>
@@ -299,7 +315,123 @@
 
 												</HBox>
 											</VBox>		
+</IconTabFilter>
+<IconTabFilter class="IconTabText"  icon="sap-icon://manager-insight"
+					iconColor="Neutral"
+					text="Reports" 
+					key="reports" >
+                    <Table id="idProductsTable"
+		inset="false"
+		items="{
+			path: '/Products',
+			sorter: {
+				path: 'Name'
+			}
+		}">
+		<headerToolbar>
+        
+			<OverflowToolbar>
+				<content>
+					<Title text="Products" level="H2"/>
+					<ToolbarSpacer />
+					
+				</content>
+			</OverflowToolbar>
+		</headerToolbar>
+		<infoToolbar>
+			<OverflowToolbar>
+				<Label text="Wide range of available products"/>
+			</OverflowToolbar>
+		</infoToolbar>
+		<columns>
+			<Column
+				width="12rem">
+				<Text text="Product" />
+			</Column>
+			<Column
+				minScreenWidth="Tablet"
+				demandPopin="true">
+				<Text text="Supplier" />
+			</Column>
+			<Column
+				minScreenWidth="Desktop"
+				demandPopin="true"
+				hAlign="End">
+				<Text text="Dimensions" />
+			</Column>
+			<Column
+				minScreenWidth="Desktop"
+				demandPopin="true"
+				hAlign="Center">
+				<Text text="Weight" />
+			</Column>
+			<Column
+				hAlign="End">
+				<Text text="Price" />
+			</Column>
+		</columns>
+		<items>
+			<ColumnListItem>
+				<cells>
+					<ObjectIdentifier
+						title="{Name}"
+						text="{Id}"/>
+					<Text
+						text="{SupplierName}" />
+					<Text
+						text="{DimensionWidth} x {DimensionDepth} x {DimensionHeight} {DimensionUnit}" />
+					<ObjectNumber
+						number="{WeightMeasure}"
+						unit="{WeightUnit}"
+						state="{
+							parts: [
+								{path: 'WeightMeasure'},
+								{path: 'WeightUnit'}
+							],
+							formatter: '.Formatter.weightState'
+						}" />
+					<ObjectNumber
+							number="{
+								parts:[{path:'Price'},{path:'CurrencyCode'}],
+								type: 'sap.ui.model.type.Currency',
+								formatOptions: {showMeasure: false}
+							}"
+							unit="{CurrencyCode}" />
+				</cells>
+			</ColumnListItem>
+		</items>
+	</Table>
+                                            </IconTabFilter>
 
+
+									</items>
+                                    <!-- <content>
+						<t:AnalyticalTable visibleRowCountMode="Auto" selectionMode="MultiToggle" rowHeight="32">
+							<t:toolbar>
+								<OverflowToolbar>
+									<ToolbarSpacer />
+									<SearchField width="12rem" />
+									<ToolbarSpacer width="1rem" />
+									<SegmentedButton>
+										<buttons>
+											<Button icon="sap-icon://table-view" />
+											<Button icon="sap-icon://bar-chart" />
+										</buttons>
+									</SegmentedButton>
+									<ToolbarSpacer width="1rem" />
+									<Button icon="sap-icon://group-2" type="Transparent" />
+									<Button icon="sap-icon://action-settings" type="Transparent" />
+								</OverflowToolbar>
+							</t:toolbar>
+							<t:columns>
+								<t:AnalyticalColumn />
+								<t:AnalyticalColumn />
+								<t:AnalyticalColumn />
+								<t:AnalyticalColumn />
+							</t:columns>
+						</t:AnalyticalTable>
+					</content> -->
+								</IconTabBar>
 				</content>
 			</Page>
 		</pages>
