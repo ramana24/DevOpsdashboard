@@ -12,7 +12,9 @@ sap.ui.define([
 		return Controller.extend("ux.SecondProject.controller.View1", {
             Formatter:Formatter, // loading outside formatter into our file
 			onInit: function () {
-
+// @ts-ignore
+// @ts-ignore
+var that=this;
             var sServiceUrl = "/sap/opu/odata/sap/EPM_REF_APPS_PROD_MAN_SRV/";
 
 		   	var oModel = new sap.ui.model.odata.ODataModel(sServiceUrl);
@@ -21,7 +23,7 @@ sap.ui.define([
               
 
         // crm model
-              var oCRMModel =  new sap.ui.model.json.JSONModel("/sap/opu/odata/sap/EPM_REF_APPS_PROD_MAN_SRV/Products?$format=json");
+              var oCRMModel =  new sap.ui.model.json.JSONModel("/sap/opu/odata/sap/EPM_REF_APPS_PROD_MAN_SRV/Products('HT-1000')?$expand=Supplier&$format=json");
 		 	 // @ts-ignore
               this.getView().byId("crmcontainer").setModel(oCRMModel,"oCRMModel");
               
@@ -86,9 +88,49 @@ sap.ui.define([
               this.getView().byId("awscontainer").setModel(oAWSModel,"oAWSModel");
                 
                 },
+// @ts-ignore
+// @ts-ignore
+onOpenAppDialog: function(oEvent){
+				// @ts-ignore
+				// @ts-ignore
+				var   IvSystem ;
+			//	var InpDate ="";
+			//	var 	InpDate =this.getView().byId("CurrentDate").getValue();
+			//	   var oModel =  new sap.ui.model.json.JSONModel("/sap/opu/odata/sap/ZPI_DASHBOARD_SRV/PI_DSHBRDSet(IvSystem='ECC',IvDate='"+InpDate+"')?$expand=EtResultQueueSet,EtResultSystemSet,EtResultAppSet&$format=json");
+				//   oModel.setSizeLimit(mSize);
+				
+				
+					
+				   // @ts-ignore
+				   var oView = this.getView();
+				   var oDialog = oView.byId("ADialog");
+				 //  oDialog.setModel(oModelFetch, "tableModel");
+				   // create dialog lazily
+				   if (!oDialog) {
+					   // create dialog via fragment factory
+			           // @ts-ignore
+			           oDialog = sap.ui.xmlfragment(oView.getId(), "ux.SecondProject.view.AppDialog", this);
+			           oView.addDependent(oDialog);
+				   }
+				  
+                   oDialog.open();
+                    // @ts-ignore
+				var oModel=	this.getView().byId("crmcontainer").getModel("oCRMModel");
+				// @ts-ignore
+				oModel.refresh();
+				// @ts-ignore
+				this.getView().setModel(oModel,"oModel");
+			   },
 
-
-            
+            onCloseAppDialog : function(){
+    	// @ts-ignore
+    	var oView = this.getView();
+  	   var oDialog = oView.byId("ADialog");
+ 
+ 		   oDialog.close();
+ 		   
+ 		  
+    },
             
 		});
 	});
