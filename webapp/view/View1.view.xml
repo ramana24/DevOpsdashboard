@@ -4,12 +4,64 @@
 	xmlns:viz.data="sap.viz.ui5.data" xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form"
 	xmlns="sap.m" xmlns:common="sap.ui.commons">
 	<Shell id="shell">
-		<App>
+		<App backgroundColor="#af1e23">
 		<pages>
-			<Page title="{i18n>title}" backgroundDesign="Transparent" enableScrolling="true"  	class= "sapUiResponsivePadding--header">
+			<Page title="{i18n>title}" showHeader="false"  backgroundDesign="Transparent" enableScrolling="true"  	class= "sapUiResponsivePadding--header">
 				<content>
+               <HBox>
+<HBox> 
+										<VBox id="Logounilever" visible="true">
+										<FlexBox class="sapUiLargeMarginEnd" alignItems="End"
+																			justifyContent="End">
+																			<items>
+																				<Image
+																					class="sapUiLargeMarginBegin sapUiTinyMarginTop sapUiMediumMarginBotton sapUiTinyMarginEnd"
+																					src="https://www.adityabirla.com/assets/images/logo.jpg"
+																					id="logo" densityAware="false" width="8em" />
+																			</items>
+																		</FlexBox>
+																		</VBox>
+										
+										</HBox>
+<HBox>
+										<VBox id="syscontainer" class="HeaderTile1 sapUiTinyMarginTop sapUiTinyMarginBeginEnd">
+											<Title
+												class="Hbold HeaderTileText1 sapUiMediumMarginBeginEnd sapUiTinyMarginTop"
+												text="Systems - Under Maintenance"></Title>
+											<Text id="sysMaintenance" class="HeaderTileStatusText1 sapUiTinyMarginBegin"
+												text="CRM,ECC"></Text>
+										</VBox>
 
-                <IconTabBar id="idIconTabBarMulti" upperCase="false" backgroundDesign="Solid"
+									</HBox>
+
+									<HBox>
+										<VBox id="criticalcontainer" class="HeaderTile1 sapUiTinyMarginTop sapUiTinyMarginEnd">
+											<Title
+												class="Hbold HeaderTileText1 sapUiMediumMarginBeginEnd sapUiTinyMarginTop"
+												text="Critical Systems"></Title>
+											<Text id="criticalsys" class="HeaderTileStatusText1 sapUiTinyMarginBegin"
+												text="BIW,PLM"></Text>
+										</VBox>
+									</HBox>
+
+									<FlexBox class="sapUiLargeMarginBegin" alignItems="Start"
+										justifyContent="Start">
+										<items>
+										<!-- displayFormat="short" -->
+											<DatePicker
+			id="CurrentDate"
+			value="99991231" valueFormat="yyyyMMdd" displayFormat="long"
+			
+			change="handleDateChange"
+			class="sapUiSmallMarginTop"/> 
+											<!-- <ObjectStatus id="CurrentDate" class="sapUiSmallMarginTop"
+												text="" state="None" /> --> 
+										</items>
+									</FlexBox>
+							</HBox>
+
+                              
+                <IconTabBar id="idIconTabBarMulti" upperCase="false" backgroundDesign="Transparent"
 									applyContentPadding="false" expanded="{device>/isNoPhone}">
 									<items>
 										<!-- IconTab Systems  -->
@@ -37,7 +89,7 @@
 																				text="Queue Depth"></Text>
 																			<NumericContent id="crmqd"
 																				class="sapUiSmallMarginBegin sapUiTinyMarginTop"
-																				value="{oCRMModel>/d/results/0/StockQuantity}"
+																				value="{oCRMModel>/d/StockQuantity}"
 																				valueColor="Critical"							indicator="None" withMargin="false" state="Loaded"
 																				press="onOpenQueueDialog" />
 																		</HBox>
@@ -53,7 +105,7 @@
 																			<StandardListItem id="crmapp" title="App Errors" type="Active"
 					
 						                                                        press="onOpenAppDialog"
-																				info="{oCRMModel>/d/results/0/DimensionWidth}"
+																				info="{oCRMModel>/d/DimensionWidth}"
 																				infoState="Error" />
 
 																			<StandardListItem title="No of Threads"
@@ -66,7 +118,7 @@
 																			<Label class="sapUiTinyMarginBegin" text="Updated at:"></Label>
 																			<Text
 																				text="{
-								                                                    path: 'oCRMModel>/d/results/0/LastModified',
+								                                                    path: 'oCRMModel>/d/LastModified',
 							                                                    formatter: '.Formatter.formatJSONDate'}"></Text>
                                                                         </HBox>
 																	</VBox>
@@ -317,7 +369,7 @@
 											</VBox>		
 </IconTabFilter>
 <IconTabFilter class="IconTabText"  icon="sap-icon://manager-insight"
-					iconColor="Neutral"
+					iconColor="Critical"
 					text="Reports" 
 					key="reports" >
                     <Table id="idProductsTable"
@@ -338,11 +390,11 @@
 				</content>
 			</OverflowToolbar>
 		</headerToolbar>
-		<infoToolbar>
+		<!-- <infoToolbar>
 			<OverflowToolbar>
 				<Label text="Wide range of available products"/>
 			</OverflowToolbar>
-		</infoToolbar>
+		</infoToolbar> -->
 		<columns>
 			<Column
 				width="12rem">
