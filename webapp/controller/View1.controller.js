@@ -120,6 +120,38 @@ onOpenAppDialog: function(oEvent){
 				oModel.refresh();
 				// @ts-ignore
 				this.getView().setModel(oModel,"oModel");
+               },
+               
+               onOpenSystemDialog: function(oEvent){
+				// @ts-ignore
+				// @ts-ignore
+				var   IvSystem ;
+			//	var InpDate ="";
+			//	var 	InpDate =this.getView().byId("CurrentDate").getValue();
+			//	   var oModel =  new sap.ui.model.json.JSONModel("/sap/opu/odata/sap/ZPI_DASHBOARD_SRV/PI_DSHBRDSet(IvSystem='ECC',IvDate='"+InpDate+"')?$expand=EtResultQueueSet,EtResultSystemSet,EtResultAppSet&$format=json");
+				//   oModel.setSizeLimit(mSize);
+				
+				
+					
+				   // @ts-ignore
+				   var oView = this.getView();
+				   var oDialog = oView.byId("SDialog");
+				 //  oDialog.setModel(oModelFetch, "tableModel");
+				   // create dialog lazily
+				   if (!oDialog) {
+					   // create dialog via fragment factory
+			           // @ts-ignore
+			           oDialog = sap.ui.xmlfragment(oView.getId(), "ux.SecondProject.view.SysDialog", this);
+			           oView.addDependent(oDialog);
+				   }
+				  
+                   oDialog.open();
+                    // @ts-ignore
+				var oModel=	this.getView().byId("crmcontainer").getModel("oCRMModel");
+				// @ts-ignore
+				oModel.refresh();
+				// @ts-ignore
+				this.getView().setModel(oModel,"oModel");
 			   },
 
             onCloseAppDialog : function(){

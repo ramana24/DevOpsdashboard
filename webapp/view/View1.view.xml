@@ -99,7 +99,7 @@
 																			<StandardListItem id="crmsys" title="System Errors" 	type="Active" 
 					
 						                                                        press="onOpenSystemDialog"
-																				info="{oCRMModel>/d/results/0/DimensionHeight}"
+																				info="{oCRMModel>/d/DimensionHeight}"
 																				infoState="Error"  />
 
 																			<StandardListItem id="crmapp" title="App Errors" type="Active"
@@ -109,7 +109,7 @@
 																				infoState="Error" />
 
 																			<StandardListItem title="No of Threads"
-																				info="{oCRMModel>/d/results/0/DimensionDepth}"
+																				info="{oCRMModel>/d/DimensionDepth}"
 																				infoState="None" />
 																		
 																		</List>
